@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leaflet Map</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+</head>
+
+<body>
+    <h1>Leaflet Example</h1>
+
+    <div style="text-align: center;">
+        <div id="map" style="width: 720px;height: 360px; border: 1px solid #AAA;"></div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    var map = L.map('map', {
+        center: [37.0902, -95.7129],
+        zoom: 4
+    })
+
+    let lat, lon
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(position => {
+            lat = position.coords.latitude
+            lon = position.coords.longitude
+        })
+    } else {
+        lat = 32.7157
+        lon = -117.1611
+    }
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://openstreetmaps.org/copyright">OpenStreetMap</a>',
+        subdomains: ['a', 'b', 'c']
+    }).addTo(map)
+
+</script>
+
+</html>
